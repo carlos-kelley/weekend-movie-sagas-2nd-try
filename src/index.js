@@ -55,35 +55,7 @@ function* fetchAllGenres(action) {
     console.log("get all genre error");
   }
 }
-function* fetchThisMovie(action) {
-  try {
-    console.log(
-      `This Movie ID: ${action.payload}`
-    );
-    const movie = yield axios.get(
-      `/api/movie/details?id=${action.payload}`
-    );
-    const thisMovieGenres = movie.data.map(
-      (genre) => {
-        return {
-          name: genre.name,
-          value: genre.genre_id,
-        };
-      }
-    );
-    yield put({
-      type: "SET_THIS_MOVIE",
-      payload: {
-        movie: movie.data[0],
-        genres: thisMovieGenres,
-      },
-    });
-  } catch {
-    console.log(
-      "Get This Movie: Generator Error"
-    );
-  }
-}
+  
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -107,20 +79,12 @@ const genres = (state = [], action) => {
   }
 };
 
-const thisMovie = (state = [], action) => {
-  switch (action.type) {
-    case "SET_MOVIE":
-      return action.payload;
-    default:
-      return state;
-  }
-};
+
 // Create one store that all components can use
 const storeInstance = createStore(
   combineReducers({
     movies,
     genres,
-    thisMovie,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)

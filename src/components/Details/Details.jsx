@@ -1,6 +1,5 @@
-import React, {
-  useEffect,
-} from "react";
+//imports
+import React, { useEffect } from "react";
 import {
   useDispatch,
   useSelector,
@@ -18,18 +17,19 @@ function Details() {
   const movie = useSelector(
     (store) => store.movies
   );
+
+  //use to get the id from the url
   const thisID = useParams();
   //I chose to use find instead of map because I only need one movie
-  const thisMovie = movies.find(
+  const thisMovie = movie.find(
     (movie) => movie.id === Number(thisID.id)
   );
-
 
   const backButton = () => {
     history.push("/");
   };
 
-//fetch movies and genres on mount
+  //fetch movies and genres on mount
   useEffect(() => {
     console.log("Movies in details:", movie);
     dispatch({
@@ -37,9 +37,9 @@ function Details() {
     });
     dispatch({
       type: "FETCH_GENRES",
-      payload: movieID,
+      payload: thisID.id,
     });
-    console.log("ID:", movieID);
+    console.log("ID:", thisMovie);
     console.log("genre:", genres);
   }, []);
 
