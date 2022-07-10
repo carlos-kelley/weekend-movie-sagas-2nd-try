@@ -9,7 +9,7 @@ import {
 import { useHistory } from "react-router-dom";
 import MovieList from "../MovieList/MovieList";
 import { useParams } from "react-router-dom";
-import "./MovieList.css";
+// import "./MovieList/MovieList.css";
 
 function Details(props) {
   const dispatch = useDispatch();
@@ -24,6 +24,9 @@ function Details(props) {
   const thisMovie = movies.find(
     (movie) => movie.id === Number(thisID.id)
   );
+  const backButton = () => {
+    history.push("/");
+  };
 
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
@@ -35,6 +38,7 @@ function Details(props) {
     <main>
       <h1>MovieList</h1>
       <h2>{thisMovie.title}</h2>
+      <button onClick={backButton}>Back</button>
     </main>
   );
 }
