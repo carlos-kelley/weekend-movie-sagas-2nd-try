@@ -27,18 +27,27 @@ function Details(props) {
   const backButton = () => {
     history.push("/");
   };
+  const showGenres = [];
 
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
-    dispatch({ type: "FETCH_DETAILS" });
-    dispatch({ type: "MOVIE_TITLE" });
+    dispatch({
+      type: "FETCH_GENRES",
+      payload: thisID.id,
+    });
+    console.log("ID:", thisID);
     console.log(event.currentTarget);
+    console.log("genre:", genres);
   }, []);
 
   return (
     <main>
       <h1>MovieList</h1>
       <h2>{thisMovie.title}</h2>
+
+      {genres.map((genre, i) => (
+        <p key={i}>{genre.name}</p>
+      ))}
       <button onClick={backButton}>Back</button>
     </main>
   );
