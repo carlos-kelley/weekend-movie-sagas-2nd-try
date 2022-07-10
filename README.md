@@ -1,9 +1,7 @@
 # Project Name
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+Movies Sagas App
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
-
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+Allows users to see a list of movies posters and titles. When clicked, the user will be brought to a details page to see the movie's description and list of genres. Uses SQL, Redux, Sagas, and React.
