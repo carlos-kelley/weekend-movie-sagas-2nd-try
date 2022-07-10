@@ -24,10 +24,10 @@ function Details(props) {
   const thisMovie = movies.find(
     (movie) => movie.id === Number(thisID.id)
   );
+
   const backButton = () => {
     history.push("/");
   };
-  const showGenres = [];
 
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
@@ -44,6 +44,8 @@ function Details(props) {
     <main>
       <h1>MovieList</h1>
       <h2>{thisMovie.title}</h2>
+      <img src={thisMovie.poster} />
+      <h3> {thisMovie.description}</h3>
 
       {genres.map((genre, i) => (
         <p key={i}>{genre.name}</p>

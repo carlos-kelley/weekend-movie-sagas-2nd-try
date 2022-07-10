@@ -49,6 +49,7 @@ function* fetchAllGenres(action) {
       type: "SET_GENRES",
       payload: details.data,
     });
+    console.log("DETAILS:", details.data);
   } catch {
     console.log("get all genre error");
   }
