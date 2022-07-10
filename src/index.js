@@ -42,14 +42,14 @@ function* fetchAllGenres(action) {
   console.log("fetch all genres saga", action);
   try {
     const genres = yield axios.get(
-      "api/genre/?id=" + action.payload
+      `api/genre/${action.payload}`
     );
     console.log("get all genres", genres.data);
     yield put({
       type: "SET_GENRES",
-      payload: details.data,
+      payload: genres.data,
     });
-    console.log("DETAILS:", details.data);
+    console.log("Genres set:", genres.data);
   } catch {
     console.log("get all genre error");
   }
