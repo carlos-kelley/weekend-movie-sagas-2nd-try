@@ -32,6 +32,7 @@ function Details(props) {
     dispatch({ type: "FETCH_MOVIES" });
     dispatch({ type: "FETCH_DETAILS" });
     dispatch({ type: "MOVIE_TITLE" });
+    console.log(event.currentTarget);
   }, []);
 
   return (

@@ -8,8 +8,10 @@ import {
 } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./MovieList.css";
+import Details from "../Details/Details";
 
 function MovieList() {
+  const [movie, setMovie] = useState("");
   const dispatch = useDispatch();
   const movies = useSelector(
     (store) => store.movies
@@ -26,7 +28,8 @@ function MovieList() {
   };
 
   useEffect(() => {
-    dispatch({ type: "FETCH_MOVIES" });
+      dispatch({ type: "FETCH_MOVIES" });
+      console.log(event.currentTarget);
   }, []);
 
   return (
@@ -36,6 +39,7 @@ function MovieList() {
         {movies.map((movie) => {
           return (
             <div
+              id={movie.id}
               onClick={clickDetails}
               key={movie.id}
             >
