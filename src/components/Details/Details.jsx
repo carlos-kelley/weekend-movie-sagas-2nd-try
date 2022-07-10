@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import React, {
+  useEffect,
+} from "react";
 import {
   useDispatch,
   useSelector,
@@ -7,6 +9,7 @@ import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 function Details() {
+  //declare our reducer variables and stores
   const dispatch = useDispatch();
   const history = useHistory();
   const genres = useSelector(
@@ -15,12 +18,18 @@ function Details() {
   const movie = useSelector(
     (store) => store.movies
   );
-  const movieID = useParams();
+  const thisID = useParams();
+  //I chose to use find instead of map because I only need one movie
+  const thisMovie = movies.find(
+    (movie) => movie.id === Number(thisID.id)
+  );
+
 
   const backButton = () => {
     history.push("/");
   };
 
+//fetch movies and genres on mount
   useEffect(() => {
     console.log("Movies in details:", movie);
     dispatch({
@@ -37,14 +46,14 @@ function Details() {
   return (
     <main>
       <h1>MovieList</h1>
-      <h2>{movie[0].title}</h2>
-      <img src={movie[0].poster} />
-      <h3> {movie[0].description}</h3>
-      <h3>
-        Genres:
-        {genres.map((genre) => `${genre.name}`)}
-      </h3>
-
+      <h2>{thisMovie.title}</h2>
+      <img src={thisMovie.poster} />
+      <h5> {thisMovie.description}</h5>
+      Genres:{" "}
+      {/* loop through our genres and display them */}
+      {genres.map((genre, i) => (
+        <p key={i}>{genre.name}</p>
+      ))}
       <button onClick={backButton}>Back</button>
     </main>
   );

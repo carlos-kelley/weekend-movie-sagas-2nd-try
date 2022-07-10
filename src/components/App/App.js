@@ -1,3 +1,4 @@
+//imports
 import {
   HashRouter as Router,
   Route,
@@ -14,7 +15,6 @@ function App() {
         <Route path="/" exact>
           <MovieList />
         </Route>
-
         {/* Details page */}
         <Route path="/details/:id" exact>
           <Details />

@@ -1,3 +1,4 @@
+//imports
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -39,6 +40,7 @@ function* fetchAllMovies() {
 }
 
 function* fetchAllGenres(action) {
+  // get all genres from the DB
   console.log("fetch all genres saga", action);
   try {
     const genres = yield axios.get(
@@ -47,7 +49,7 @@ function* fetchAllGenres(action) {
     console.log("get all genres", genres.data);
     yield put({
       type: "SET_GENRES",
-      payload: details.data,
+      payload: genres.data,
     });
   } catch {
     console.log("get all genre error");

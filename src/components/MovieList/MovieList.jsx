@@ -8,16 +8,17 @@ import {
 } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./MovieList.css";
-import Details from "../Details/Details";
 
 function MovieList() {
-  const [movie, setMovie] = useState("");
+  //declare our reducer variables and stores
   const dispatch = useDispatch();
   const movies = useSelector(
     (store) => store.movies
   );
+  //setup our history
   const history = useHistory();
 
+  //function to show details on click
   const clickDetails = (event) => {
     const movieID = event.currentTarget.id;
     console.log("movieID:", movieID);
@@ -26,7 +27,7 @@ function MovieList() {
       id: movieID,
     });
   };
-
+//fetch movies on mount
   useEffect(() => {
       dispatch({ type: "FETCH_MOVIES" });
       console.log(event.currentTarget);
@@ -36,6 +37,7 @@ function MovieList() {
     <main>
       <h1>MovieList</h1>
       <section className="movies">
+        {/* loop through our movies and display them */}
         {movies.map((movie) => {
           return (
             <div
@@ -43,6 +45,7 @@ function MovieList() {
               onClick={clickDetails}
               key={movie.id}
             >
+              {/* display the movie information */}
               <h3>{movie.title}</h3>
               <img
                 src={movie.poster}
