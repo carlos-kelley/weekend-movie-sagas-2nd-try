@@ -15,7 +15,7 @@ function Details() {
   const movie = useSelector(
     (store) => store.movies
   );
-  let { movieID } = useParams();
+  const movieID = useParams();
 
   const backButton = () => {
     history.push("/");
@@ -25,7 +25,6 @@ function Details() {
     console.log("Movies in details:", movie);
     dispatch({
       type: "FETCH_MOVIES",
-      payload: movieID,
     });
     dispatch({
       type: "FETCH_GENRES",
